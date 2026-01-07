@@ -53,7 +53,7 @@ class MultiBrain:
                 if self.multiplier > 81: self.multiplier = 1 
 
     def predict(self):
-        if len(self.history) < 30: return "WAITING", 0, "Learning Data..."
+        if len(self.history) < 2: return "WAITING", 0, "Learning Data..."
 
         working_data = list(self.history)[-LEARNING_LIMIT:]
         X, y = [], []
@@ -140,4 +140,5 @@ if __name__ == "__main__":
     t = threading.Thread(target=run_bot_logic)
     t.daemon = True
     t.start()
+
     app.run(host='0.0.0.0', port=10000)
