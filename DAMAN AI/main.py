@@ -27,9 +27,9 @@ latest_data = {
 # --- OLD AI SETTINGS ---
 HISTORY_LEN = 20000 
 LEARNING_LIMIT = 2000 
-TRAIN_SIZE = 12       
+TRAIN_SIZE = 2       
 DATA_FILE = "daman_big_data.csv"
-base_bet = 10 
+base_bet = 30
 
 # --- AI BRAIN (Tumhara Logic) ---
 class MultiBrain:
@@ -142,3 +142,4 @@ if __name__ == "__main__":
     t.start()
 
     app.run(host='0.0.0.0', port=10000)
+
