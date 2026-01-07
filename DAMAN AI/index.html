@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ DAMAN AI v4.0 - PREMIUM PREDICTOR</title>
+    <style>
+        /* HACKER THEME DESIGN */
+        body { 
+            background-color: #050505; 
+            color: #00ff41; 
+            font-family: 'Courier New', monospace; 
+            text-align: center; 
+            margin: 0; 
+            padding: 10px; 
+        }
+        
+        h1 { text-shadow: 0 0 10px #00ff41; font-size: 28px; }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .box { 
+            border: 2px solid #00ff41; 
+            padding: 15px; 
+            margin: 15px 0; 
+            border-radius: 10px; 
+            background: #0f0f0f; 
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.2);
+        }
+
+        .issue-box { font-size: 18px; color: #fff; }
+        
+        /* RESULT COLORS */
+        .big { color: #2ecc71; font-size: 60px; font-weight: 900; text-shadow: 0 0 20px #2ecc71; margin: 10px 0; }
+        .small { color: #d633ff; font-size: 60px; font-weight: 900; text-shadow: 0 0 20px #d633ff; margin: 10px 0; }
+        .loading { color: #f1c40f; font-size: 30px; animation: blink 1s infinite; }
+
+        @keyframes blink { 50% { opacity: 0.5; } }
+
+        .status { font-size: 14px; color: #888; margin-top: 5px; }
+
+        .btn { 
+            background: #00ff41; 
+            color: #000; 
+            padding: 15px; 
+            width: 90%; 
+            display: inline-block; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            font-size: 18px; 
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* ADSTERRA SPACES */
+        .ad-slot {
+            background: #1a1a1a;
+            border: 1px dashed #444;
+            color: #555;
+            padding: 20px;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <div class="ad-slot">ADVERTISEMENT AREA 1</div>
+
+        <h1>🚀 DAMAN AI v4.0</h1>
+        <p>SERVER STATUS: <span id="server-status" style="color:red">🔴 CONNECTING...</span></p>
+
+        <div class="box">
+            <div class="issue-box">📍 ISSUE: <span id="issue">Loading...</span></div>
+            <hr style="border-color: #333;">
+            
+            <p>AI PREDICTION:</p>
+            <div id="pred-text" class="loading">WAITING...</div>
+            
+            <div class="status">CONFIDENCE: <span id="conf">0%</span></div>
+            <div class="status" id="status-msg">Connecting to Server...</div>
+        </div>
+
+        <div class="ad-slot">ADVERTISEMENT AREA 2</div>
+
+        <div class="box">
+            <p style="color: #fff;">💰 MONEY MANAGEMENT</p>
+            <h2 id="mult" style="color: yellow; margin: 5px;">1X (START)</h2>
+            <p style="font-size: 12px; color: #888;">Only bet what you can afford to lose.</p>
+        </div>
+
+        <a href="https://t.me/YOUR_TELEGRAM_LINK" class="btn">JOIN TELEGRAM CHANNEL</a>
+        
+        <br><br>
+        <p style="font-size: 10px; color: #444;">Powered by Python AI Engine</p>
+
+    </div>
+
+    <script>
+        // AAPKA RENDER LINK YAHAN HAI
+        const API_URL = "https://daman-ai.onrender.com/get_prediction"; 
+
+        async function updateData() {
+            try {
+                let response = await fetch(API_URL);
+                let data = await response.json();
+
+                // Status Update
+                let statusBadge = document.getElementById("server-status");
+                statusBadge.innerText = "🟢 ONLINE";
+                statusBadge.style.color = "#00ff41";
+
+                // Data Update
+                document.getElementById("issue").innerText = data.issue;
+                document.getElementById("conf").innerText = data.confidence + "%";
+                document.getElementById("mult").innerText = data.multiplier + "x";
+                document.getElementById("status-msg").innerText = data.status;
+
+                let predDiv = document.getElementById("pred-text");
+                predDiv.innerText = data.prediction;
+                
+                // Color Change Logic
+                if(data.prediction === "BIG") {
+                    predDiv.className = "big";
+                } else if (data.prediction === "SMALL") {
+                    predDiv.className = "small";
+                } else {
+                    predDiv.className = "loading";
+                }
+
+            } catch (error) {
+                console.log("Server waking up...");
+                document.getElementById("status-msg").innerText = "Server Waking Up (Wait 30s)...";
+            }
+        }
+
+        // Har 2 second mein data refresh karega
+        setInterval(updateData, 2000);
+        updateData();
+    </script>
+
+</body>
+</html>
